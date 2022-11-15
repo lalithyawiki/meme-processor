@@ -2,6 +2,10 @@ let { writeFile } = require("fs");
 let { join } = require("path");
 let blend = require("@mapbox/blend");
 
+/*
+Utility functions to support the meme generation are added here
+*/
+
 const processMeme = async (initialParams) => {
   try {
     const imageData = await pullImageData(initialParams);
