@@ -1,12 +1,12 @@
 let request = require("request");
 
 /*
-    REST related code added here
+    REST(http) code is added here
 */
 const END_POINT = "https://cataas.com/cat/says/";
 
 const generateRequest = ({ sayThis, width, height, color, size }) => {
-  // https://cataas.com/cat/says/Hi%20There?width=500&amp;height=800&amp;c=Cyan&amp;s=150
+  // format: https://cataas.com/cat/says/Hi%20There?width=500&amp;height=800&amp;c=Cyan&amp;s=150
   return {
     url: `${END_POINT}/${sayThis}?width=${width}&height=${height}&color=${color}&s=${size}`,
     encoding: "binary",
