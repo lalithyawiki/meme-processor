@@ -1,3 +1,4 @@
+/** This is the starting point of the application. Run node app.js or npm start */
 const { get, generateRequest } = require("./api");
 const { processMeme } = require("./utils");
 let argv = require("minimist")(process.argv.slice(2));
