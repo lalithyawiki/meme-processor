@@ -1,5 +1,5 @@
 const { get } = require("./api");
-const { blendImages, saveFile, pullImageData } = require("./utils");
+const { processMeme } = require("./utils");
 let argv = require("minimist")(process.argv.slice(2));
 
 let {
@@ -10,7 +10,7 @@ let {
   color = "Pink",
   size = 100,
   savingPath = "./cat-card.jpg",
-  imageFormat = "jpeg"
+  imageFormat = "jpeg",
 } = argv;
 
 const generateRequest = (sayThis) => {
@@ -31,29 +31,10 @@ const generateRequest = (sayThis) => {
   };
 };
 
-const processInputs = () => {
-  const imagePositions = [
-    { x: 0, y: 0 },
-    { x: width, y: 0 },
-  ];
-  const promises = [get(generateRequest(greeting)), get(generateRequest(who))];
-  return { promises, imagePositions };
-};
+const imagePositions = [
+  { x: 0, y: 0 },
+  { x: width, y: 0 },
+];
+const promises = [get(generateRequest(greeting)), get(generateRequest(who))];
 
-const processMeme = async () => {
-  try {
-    const imageData = await pullImageData(processInputs());
-    const blendedData = await blendImages(
-      imageData,
-      width * 2,
-      height,
-      imageFormat
-    );
-    await saveFile(blendedData, savingPath);
-  } catch (err) {
-    console.log(err);
-    return;
-  }
-};
-
-processMeme();
+processMeme({ promises, imagePositions, width: width * 2, height, imageFormat, savingPath });
