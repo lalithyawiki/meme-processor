@@ -1,7 +1,7 @@
 let request = require("request");
 
 /*
-    REST(http) code is added here
+    REST call related code is added here
 */
 const END_POINT = "https://cataas.com/cat/says/";
 

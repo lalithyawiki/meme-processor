@@ -24,8 +24,8 @@ const pullImageData = async ({ promises, imagePositions }) => {
   const data = await Promise.all(promises);
 
   return data.map((el, index) => {
-    console.log("Received response with status:" + el.res.statusCode);
-    return { buffer: new Buffer(el.body, "binary"), ...imagePositions[index] };
+    console.log(`Received response ${index+1} with status: ${el.res.statusCode}`);
+    return { buffer: new Buffer.from(el.body, "binary"), ...imagePositions[index] };
   });
 };
 
