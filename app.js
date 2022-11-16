@@ -14,9 +14,11 @@ let {
   height = 500,
   color = "Pink",
   size = 100,
-  savingPath = "./meme/cat-card.jpg",
-  imageFormat = "jpeg",
 } = argv;
+
+const savingPath = "./meme/cat-card.jpg";
+const imageFormat = "jpeg";
+const imageConfigs = { width, height, color, size };
 
 /*
 This is listing where images should render. 
@@ -26,8 +28,6 @@ const imagePositions = [
   { x: 0, y: 0 },
   { x: width, y: 0 },
 ];
-
-const imageConfigs = { width, height, color, size };
 
 /*
 Add a get call to this list for each meme you need to fetch.
