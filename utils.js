@@ -34,7 +34,7 @@ const blendImages = ({ imageData, width, height, imageFormat }) => {
   return new Promise((resolve, reject) => {
     blend(imageData, { width, height, imageFormat }, (err, blendedData) => {
       if (err) {
-        _errLog("Error occured while belnding images");
+        _errLog("Error occured while blending images");
         reject(err);
       }
 
