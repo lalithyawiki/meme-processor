@@ -1,4 +1,4 @@
-/** This is the starting point of the application. Run node app.js or npm start */
+/* This is the starting point of the application. Run node app.js or npm start */
 const { get, generateRequest } = require("./api");
 const { processMeme } = require("./utils");
 let argv = require("minimist")(process.argv.slice(2));
@@ -26,7 +26,6 @@ const imagePositions = [
   { x: 0, y: 0 },
   { x: width, y: 0 },
 ];
-
 
 const imageConfigs = { width, height, color, size };
 

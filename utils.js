@@ -1,6 +1,7 @@
 let { writeFile } = require("fs");
 let { join } = require("path");
 let blend = require("@mapbox/blend");
+const { _errLog, _log } = require("./logger");
 
 /*
 Utility functions to support the meme generation are added here
@@ -15,7 +16,7 @@ const processMeme = async (initialParams) => {
     });
     await saveFile({ blendedData, ...initialParams });
   } catch (err) {
-    console.log(err);
+    _errLog(err);
     return;
   }
 };
@@ -24,7 +25,7 @@ const pullImageData = async ({ promises, imagePositions }) => {
   const data = await Promise.all(promises);
 
   return data.map((el, index) => {
-    console.log(`Received response ${index+1} with status: ${el.res.statusCode}`);
+    _log(`Received response ${index+1} with status: ${el.res.statusCode}`);
     return { buffer: new Buffer.from(el.body, "binary"), ...imagePositions[index] };
   });
 };
@@ -33,6 +34,7 @@ const blendImages = ({ imageData, width, height, imageFormat }) => {
   return new Promise((resolve, reject) => {
     blend(imageData, { width, height, imageFormat }, (err, blendedData) => {
       if (err) {
+        _errLog("Error occured while belnding images");
         reject(err);
       }
 
@@ -47,10 +49,11 @@ const saveFile = ({ blendedData, savingPath }) => {
 
     writeFile(fileOut, blendedData, "binary", (err) => {
       if (err) {
+        _errLog("Error occured while saving the file");
         reject(err);
       }
 
-      console.log("The file was saved!");
+      _log("The file was saved!");
       resolve(true);
     });
   });

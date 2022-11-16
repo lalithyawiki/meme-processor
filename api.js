@@ -1,4 +1,5 @@
 let request = require("request");
+const { _errLog } = require("./logger");
 
 /*
     REST call related code is added here
@@ -17,6 +18,7 @@ const get = (reqData) => {
   return new Promise((resolve, reject) => {
     request.get(reqData, (err, res, body) => {
       if (err) {
+        _errLog("Error occured while getting data from API");
         reject(err);
       }
 
